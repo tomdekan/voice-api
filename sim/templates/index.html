@@ -9,7 +9,9 @@
     <h1>Text to Speech Stream</h1>
     <form action="{% url 'stream-audio' %}" method="get" target="audio_frame">
         <label for="text">Enter text:</label>
-        <input value="The Western world is a beacon of happiness" type="text" id="text" name="text" required>
+        <textarea name="text" id="text" required>
+            The Western world is a beacon of happiness
+        </textarea>
         <label for="voice">Choose a voice:</label>
         <select id="voice" name="voice">
             {% for voice in voices %}
