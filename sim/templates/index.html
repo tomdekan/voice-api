@@ -3,28 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Audio</title>
+    <title>Euphonic Audio Player</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .audio-player {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            resize: vertical;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Text to Speech Stream</h1>
-    <form action="{% url 'stream-audio' %}" method="get" target="audio_frame">
-        <label for="text">Enter text:</label>
-        <textarea name="text" id="text" required>
-            The Western world is a beacon of happiness
-        </textarea>
-        <label for="voice">Choose a voice:</label>
-        <select id="voice" name="voice">
-            {% for voice in voices %}
-            <option value="{{ voice.id }}">{{ voice.name }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Play Audio</button>
-    </form>
-    <br>
-    <audio controls>
-        <source src="" type="audio/mp3" id="audioSource">
-        Your browser does not support the audio element.
-    </audio>
+    <div class="audio-player">
+        <h1>Hear your voice</h1>
+        <form action="{% url 'stream-audio' %}" method="get" target="audio_frame">
+            <label for="text">Enter text:</label>
+            <textarea name="text" id="text" required>The Western world is a beacon of happiness</textarea>
+            <label for="voice">Choose a voice:</label>
+            <select id="voice" name="voice">
+                {% for voice in voices %}
+                <option value="{{ voice.id }}">{{ voice.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Play Audio</button>
+        </form>
+        <audio controls>
+            <source src="" type="audio/mp3" id="audioSource">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
 
     <script>
         const form = document.querySelector('form');
