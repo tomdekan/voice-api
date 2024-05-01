@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Audio</title>
+</head>
+<body>
+    <h1>Text to Speech Stream</h1>
+    <form action="{% url 'stream-audio' %}" method="get" target="audio_frame">
+        <label for="text">Enter text:</label>
+        <input value="The Western world is a beacon of happiness" type="text" id="text" name="text" required>
+        <label for="voice">Choose a voice:</label>
+        <select id="voice" name="voice">
+            {% for voice in voices %}
+            <option value="{{ voice.id }}">{{ voice.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Play Audio</button>
+    </form>
+    <br>
+    <audio controls>
+        <source src="" type="audio/mp3" id="audioSource">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const form = document.querySelector('form');
+        const audioSource = document.getElementById('audioSource');
+        const audioPlayer = document.querySelector('audio');
+
+        form.onsubmit = function(event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const url = `${form.action}?text=${encodeURIComponent(formData.get('text'))}&voice=${encodeURIComponent(formData.get('voice'))}`;
+            audioSource.src = url;
+            audioPlayer.load();
+            audioPlayer.play();
+        };
+    </script>
+</body>
+</html>
