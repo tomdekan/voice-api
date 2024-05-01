@@ -8,8 +8,22 @@ We'll quickly create a Django app that:
 - turned your voice into an instrument that you can use to create audiobooks with your voice, or anything else 🎉
 
 Our final product will look like this:
+<br>
 
-[]
+<style>
+    /* Make video responsive */
+    .video-container video {
+       width: 100% !important;
+        height: auto !important;
+        border-radius: 10px;
+    }
+  </style>
+<div class="video-container">
+  <video controls autoplay controls playsinline loop muted>
+    <source src="https://pd-site.s3.amazonaws.com/voice-api/final_product.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 
 ## 0. Install and create your Django app
@@ -191,6 +205,21 @@ To do this:
 1. Create a voice clone on [ElevenLabs](https://www.elevenlabs.io/)
 See my short video below showing exactly how to do this:
 2. Paste your voice clone id into the .env file
+
+Video showing how to clone your voice:
+<br>
+<style>
+.embed-container { 
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 10px;
+} 
+.embed-container iframe, .embed-container object, .embed-container embed { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+</style>
+<div class='embed-container'>
+<iframe src='https://www.youtube.com/embed/TjMKTVlMxjE' allow='autoplay' frameborder='0' allowfullscreen></iframe>
+</div>
+<br>  
+
 
 
 ## Congrats! ✅
